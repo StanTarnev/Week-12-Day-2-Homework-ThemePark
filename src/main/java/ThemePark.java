@@ -2,27 +2,36 @@ import attractions.Attraction;
 import attractions.Dodgems;
 import behaviours.IReviewed;
 import people.Visitor;
+import stalls.Stall;
 
 import java.util.ArrayList;
 
 public class ThemePark {
-    private Dodgems dodgems;
-    private ArrayList<IReviewed> reviewedsList;
+    private ArrayList<Stall> stalls;
+    private ArrayList<Attraction> attractions;
 
     public ThemePark(){
-        this.reviewedsList = new ArrayList<IReviewed>();
-
-//        dodgems = new Dodgems();
-
-        this.reviewedsList.add(dodgems);
+        stalls = new ArrayList<Stall>();
+        attractions = new ArrayList<Attraction>();
     }
-    //array list of attracions
-    //array of stalls
-    //piublic araylis<Irewviewed> getallreviewd()
-    //{return with loop
 
-//    public int visit(Visitor visitor, Attraction attraction){
-//        attraction.getVisitCount() += 1;
-//        visitor.addAttraction(attraction);
-//    }
+    public void visit(Visitor visitor, Attraction attraction){
+        attraction.increaseVisitCount();
+        visitor.addAttraction(attraction);
+    }
+
+    public ArrayList<IReviewed> getReviewed(){
+        ArrayList<IReviewed> reviewed = new ArrayList<IReviewed>();
+        reviewed.addAll(this.attractions);
+        reviewed.addAll(this.stalls);
+        return reviewed;
+    }
+
+    public void addAttraction(Attraction attraction){
+        this.attractions.add(attraction);
+    }
+
+    public void addStall(Stall stall){
+        this.stalls.add(stall);
+    }
 }
